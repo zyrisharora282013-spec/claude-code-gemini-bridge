@@ -1,0 +1,54 @@
+name: CI & Build Verification
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      working-directory: src/proxy
+      run: npm install --no-fund
+
+    - name: Syntax check all JavaScript
+      shell: bash
+      run: |
+        find src/proxy -name '*.js' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 node --check
+
+    - name: Run tests
+      working-directory: src/proxy
+      run: npm test
+
+    - name: Build CSS
+      working-directory: src/proxy
+      run: npm run build:css
+
+    - name: Dependency audit (production, high+)
+      working-directory: src/proxy
+      run: npm audit --omit=dev --audit-level=high
+
+    - name: Build Standalone Installer (CSC)
+      run: |
+        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /out:Installer.exe /target:exe /optimize+ installer/Installer.cs
+        Get-Item Installer.exe
+
+    - name: Upload Installer Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Claude-Gemini-Installer
+        path: Installer.exe

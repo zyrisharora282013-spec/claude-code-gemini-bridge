@@ -1,0 +1,35 @@
+name: Release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags: [ "v*" ]
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build Installer.exe
+      shell: pwsh
+      run: |
+        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /out:Installer.exe /target:exe /optimize+ installer/Installer.cs
+        if (-not (Test-Path Installer.exe)) { throw "Installer.exe was not built" }
+
+    - name: Compute SHA-256
+      shell: pwsh
+      run: |
+        $hash = (Get-FileHash Installer.exe -Algorithm SHA256).Hash.ToLower()
+        "$hash  Installer.exe" | Out-File -Encoding ascii Installer.exe.sha256
+        Get-Content Installer.exe.sha256
+
+    - name: Publish GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          Installer.exe
+          Installer.exe.sha256
+        generate_release_notes: true
