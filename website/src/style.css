@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ink-950 text-slate-300 font-sans antialiased; }
+  h1, h2, h3 { @apply text-white tracking-tight; }
+  a:focus-visible, button:focus-visible { @apply outline outline-2 outline-offset-2 outline-cyan-400; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-5xl px-5; }
+  .btn { @apply inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition; }
+  .btn-primary { @apply bg-gradient-to-r from-violet-500 to-cyan-500 text-white hover:brightness-110; }
+  .btn-ghost { @apply border border-ink-border text-slate-200 hover:bg-ink-800; }
+  .card { @apply rounded-xl border border-ink-border bg-ink-900/70 p-5; }
+  .prose-page p { @apply mb-4 leading-relaxed; }
+  .prose-page h2 { @apply mt-10 mb-3 text-2xl font-bold; }
+  .prose-page h3 { @apply mt-6 mb-2 text-lg font-semibold; }
+  .prose-page ul { @apply mb-4 list-disc pl-6 space-y-1; }
+  .prose-page ol { @apply mb-4 list-decimal pl-6 space-y-1; }
+  .prose-page a { @apply text-cyan-400 underline underline-offset-2 hover:text-cyan-300; }
+  .prose-page code { @apply rounded bg-ink-800 px-1.5 py-0.5 font-mono text-sm text-cyan-300; }
+  .prose-page pre { @apply mb-4 overflow-x-auto rounded-lg border border-ink-border bg-ink-900 p-4 font-mono text-sm text-slate-200; }
+  .prose-page pre code { @apply bg-transparent p-0; }
+  .gradient-text { @apply bg-gradient-to-r from-violet-400 to-cyan-300 bg-clip-text text-transparent; }
+}
