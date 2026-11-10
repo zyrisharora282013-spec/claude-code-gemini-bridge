@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--include:head-common-->
+  <title>Install guide - Claude Code + Gemini Bridge</title>
+  <meta name="description" content="Install the Claude Code + Gemini Bridge on Windows with the installer or the PowerShell setup script, then link your Google account." />
+</head>
+<body>
+  <!--include:nav-->
+  <main class="container-page prose-page py-14">
+    <h1 class="mb-2 text-4xl font-extrabold">Install guide</h1>
+    <p class="text-slate-400">Windows 10/11. You need Node.js 18+ and the Claude Code CLI.</p>
+
+    <h2>Option A: Installer</h2>
+    <ol>
+      <li>Download <code>Installer.exe</code> and its SHA-256 checksum from the <a href="/download.html">Download page</a>.</li>
+      <li>Verify the checksum: <code>Get-FileHash .\Installer.exe -Algorithm SHA256</code> and compare it to the published value.</li>
+      <li>Run the installer. It configures Claude Code, adds the <code>claude-gemini</code> command and starts the proxy on port 8085.</li>
+    </ol>
+
+    <h2>Option B: PowerShell setup</h2>
+    <pre><code>git clone https://github.com/VanshCoder01/claude-code-gemini-bridge
+cd claude-code-gemini-bridge
+npm run setup</code></pre>
+    <p>Prefer to inspect first? Read <code>scripts/setup.ps1</code> before running it.</p>
+
+    <h2>Link your Google account</h2>
+    <ol>
+      <li>Open <a href="http://localhost:8085/">http://localhost:8085/</a> in your browser.</li>
+      <li>Click <strong>Add Account</strong> and sign in with Google.</li>
+      <li>Run <code>claude-gemini</code> in any terminal.</li>
+    </ol>
+
+    <h2>Optional: your own OAuth client</h2>
+    <p>The bundled Google OAuth client is a shared default. For long-term use, create your own in Google Cloud Console and set <code>OAUTH_CLIENT_ID</code> and <code>OAUTH_CLIENT_SECRET</code> environment variables.</p>
+  </main>
+  <!--include:footer-->
+</body>
+</html>

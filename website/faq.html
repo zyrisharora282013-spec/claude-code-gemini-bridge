@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--include:head-common-->
+  <title>FAQ - Claude Code + Gemini Bridge</title>
+  <meta name="description" content="Frequently asked questions about running Claude Code with Gemini through a local proxy." />
+</head>
+<body>
+  <!--include:nav-->
+  <main class="container-page prose-page py-14">
+    <h1 class="mb-6 text-4xl font-extrabold">FAQ</h1>
+
+    <h3>Is this an official Anthropic or Google product?</h3>
+    <p>No. It is an independent open-source project.</p>
+
+    <h3>Does it cost money?</h3>
+    <p>The bridge is free. Your usage is subject to the quotas and terms of your Google account.</p>
+
+    <h3>Where do my tokens go?</h3>
+    <p>They are stored on your computer and sent only to Google. See <a href="/security.html">Security &amp; Privacy</a>.</p>
+
+    <h3>Is it allowed by Google's terms?</h3>
+    <p>It uses Google's Cloud Code API through your account, so Google's terms apply and access can be restricted at Google's discretion. Read them and decide for yourself.</p>
+
+    <h3>Claude Code says "API error, retrying".</h3>
+    <p>The proxy likely has no linked account. Open <code>http://localhost:8085/</code> and add one.</p>
+
+    <h3>Port 8085 is in use.</h3>
+    <p>Change the port in <code>%USERPROFILE%\.config\antigravity-proxy\config.json</code>.</p>
+
+    <h3>Does it work on macOS or Linux?</h3>
+    <p>The proxy is Node.js and should run anywhere, but the installer and scripts target Windows.</p>
+
+    <h3>Can I host it for other people?</h3>
+    <p>Please don't. A hosted proxy would hold other people's Google tokens, which is a security and legal risk.</p>
+  </main>
+  <!--include:footer-->
+</body>
+</html>

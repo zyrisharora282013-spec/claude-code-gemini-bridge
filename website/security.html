@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--include:head-common-->
+  <title>Security &amp; Privacy - Claude Code + Gemini Bridge</title>
+  <meta name="description" content="How the bridge handles your data: it runs locally, your Google tokens stay on your machine, and the dashboard is hardened by default." />
+</head>
+<body>
+  <!--include:nav-->
+  <main class="container-page prose-page py-14">
+    <h1 class="mb-2 text-4xl font-extrabold">Security &amp; Privacy</h1>
+    <p class="text-slate-400">Plain language, no marketing gloss.</p>
+
+    <h2>What stays on your machine</h2>
+    <ul>
+      <li>The proxy runs locally and listens on <code>127.0.0.1</code> only by default.</li>
+      <li>Your Google OAuth tokens are stored on your computer in a file with owner-only permissions. They are sent only to Google to authenticate your requests.</li>
+      <li>This website is static: no accounts, no backend, no analytics, no cookies, no secrets.</li>
+    </ul>
+
+    <h2>What leaves your machine</h2>
+    <p>Your prompts and code context go to Google's Cloud Code API, because that is where Gemini runs. Treat that like any cloud AI service.</p>
+
+    <h2>Hardening</h2>
+    <ul>
+      <li>Requests from non-local browser origins and Host headers are rejected (CSRF and DNS-rebinding protection).</li>
+      <li>Dashboard password is stored hashed with scrypt; repeated wrong passwords trigger a temporary lockout.</li>
+      <li>Strict Content-Security-Policy, X-Frame-Options and Referrer-Policy on the dashboard.</li>
+      <li>Email addresses are masked in logs.</li>
+      <li>CI runs tests, dependency audit and CodeQL.</li>
+    </ul>
+
+    <h2>Google's terms</h2>
+    <p>The bridge uses Google's Cloud Code API with your Google account. Google's terms apply, and Google may restrict access at its discretion. Review them before using the bridge. This project is not affiliated with or endorsed by Google or Anthropic.</p>
+
+    <h2>Do not host it publicly</h2>
+    <p>Do not expose the proxy to the internet or to other people. Anyone who can reach it can use your linked accounts.</p>
+
+    <h2>Report a vulnerability</h2>
+    <p>See <code>SECURITY.md</code> in the <a href="https://github.com/VanshCoder01/claude-code-gemini-bridge" rel="noopener">repository</a>.</p>
+  </main>
+  <!--include:footer-->
+</body>
+</html>

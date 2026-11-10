@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--include:head-common-->
+  <title>Claude Code + Gemini Bridge - run Claude Code on Gemini, locally</title>
+  <meta name="description" content="A local proxy that lets the Claude Code CLI use Google Gemini models. Runs on your machine; your Google tokens never leave it." />
+</head>
+<body>
+  <!--include:nav-->
+  <main>
+    <section class="relative overflow-hidden">
+      <canvas id="hero-canvas" class="absolute inset-0 h-full w-full opacity-60" aria-hidden="true"></canvas>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-ink-950/40 to-ink-950" aria-hidden="true"></div>
+      <div class="container-page relative py-24 text-center md:py-32">
+        <p class="mb-4 inline-block rounded-full border border-ink-border bg-ink-900/80 px-3 py-1 text-xs text-cyan-300">Open source &middot; Windows &middot; runs 100% locally</p>
+        <h1 class="mx-auto max-w-3xl text-4xl font-extrabold md:text-6xl">Claude Code, powered by <span class="gradient-text">Gemini</span></h1>
+        <p class="mx-auto mt-5 max-w-2xl text-lg text-slate-400">A small local proxy translates Claude Code's Anthropic API calls to Google's Cloud Code API, with multi-account load balancing and a dashboard to manage it all.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="/download.html" class="btn btn-primary">Download</a>
+          <a href="/install.html" class="btn btn-ghost">Install guide</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-page py-16" aria-labelledby="how">
+      <h2 id="how" class="mb-8 text-center text-3xl font-bold">How it works</h2>
+      <figure>
+        <svg viewBox="0 0 760 140" role="img" aria-label="Claude Code CLI sends Anthropic API requests to the local proxy on localhost 8085, which calls Google Cloud Code and streams responses back" class="w-full">
+          <defs>
+            <linearGradient id="ln" x1="0" x2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+            <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#22d3ee"/></marker>
+          </defs>
+          <g font-family="Inter, system-ui, sans-serif" font-size="14" fill="#e2e8f0" text-anchor="middle">
+            <rect x="10" y="35" width="190" height="70" rx="12" fill="#15122a" stroke="#2a2548"/>
+            <text x="105" y="66" font-weight="700">Claude Code CLI</text><text x="105" y="88" fill="#94a3b8" font-size="12">Anthropic Messages API</text>
+            <rect x="285" y="35" width="190" height="70" rx="12" fill="#15122a" stroke="url(#ln)" stroke-width="2"/>
+            <text x="380" y="66" font-weight="700">Local proxy</text><text x="380" y="88" fill="#94a3b8" font-size="12">localhost:8085 (your PC)</text>
+            <rect x="560" y="35" width="190" height="70" rx="12" fill="#15122a" stroke="#2a2548"/>
+            <text x="655" y="66" font-weight="700">Google Cloud Code</text><text x="655" y="88" fill="#94a3b8" font-size="12">Gemini models</text>
+            <path d="M200 70H283" stroke="#22d3ee" stroke-width="2" marker-end="url(#ah)"/>
+            <path d="M475 70H558" stroke="#22d3ee" stroke-width="2" marker-end="url(#ah)"/>
+          </g>
+        </svg>
+        <figcaption class="mt-4 text-center text-sm text-slate-500">Requests are translated on your machine. Streaming responses flow back the same way.</figcaption>
+      </figure>
+    </section>
+
+    <section class="container-page py-8" aria-labelledby="features">
+      <h2 id="features" class="mb-8 text-center text-3xl font-bold">Features</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        <div class="card"><h3 class="mb-1 font-semibold">Multi-account balancing</h3><p class="text-sm text-slate-400">Link several Google accounts. The proxy rotates them when one is rate-limited.</p></div>
+        <div class="card"><h3 class="mb-1 font-semibold">Local dashboard</h3><p class="text-sm text-slate-400">Manage accounts, models, logs and settings at <code class="font-mono text-cyan-300">localhost:8085</code>.</p></div>
+        <div class="card"><h3 class="mb-1 font-semibold">Tool calls &amp; streaming</h3><p class="text-sm text-slate-400">Anthropic-compatible streaming and tool use, so Claude Code keeps working normally.</p></div>
+        <div class="card"><h3 class="mb-1 font-semibold">Hardened by default</h3><p class="text-sm text-slate-400">Loopback-only, CSRF/DNS-rebinding protection, hashed dashboard password and login lockout.</p></div>
+        <div class="card"><h3 class="mb-1 font-semibold">One-click installer</h3><p class="text-sm text-slate-400">A Windows installer, or a PowerShell setup script if you prefer to read what runs.</p></div>
+        <div class="card"><h3 class="mb-1 font-semibold">Open source</h3><p class="text-sm text-slate-400">MIT licensed. Read every line on GitHub before you run it.</p></div>
+      </div>
+      <p class="mx-auto mt-10 max-w-2xl rounded-lg border border-ink-border bg-ink-900/70 p-4 text-sm text-slate-400">Honest note: this project uses Google's Cloud Code API through your own Google account, so Google's terms apply and access may be restricted at Google's discretion. Review them before use.</p>
+    </section>
+  </main>
+  <!--include:footer-->
+</body>
+</html>
