@@ -18,15 +18,15 @@ window.Components.claudeConfig = () => ({
 
     /**
      * Extract port from ANTHROPIC_BASE_URL for display
-     * @returns {string} Port number or '8080' as fallback
+     * @returns {string} Port number or '8085' as fallback
      */
     getProxyPort() {
         const baseUrl = this.config?.env?.ANTHROPIC_BASE_URL || '';
         try {
             const url = new URL(baseUrl);
-            return url.port || '8080';
+            return url.port || '8085';
         } catch {
-            return '8080';
+            return '8085';
         }
     },
 
