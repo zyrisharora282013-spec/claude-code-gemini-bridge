@@ -183,20 +183,14 @@ This project is licensed under the [MIT License](LICENSE).
 ### Google OAuth Credentials
 
 > [!WARNING]
-> The bundled OAuth client ID and secret are **shared defaults** intended for local development only. Google may revoke them at any time. For production or long-term use, create your own OAuth credentials in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) and set them via environment variables:
+> This repository does **not** ship a Google OAuth client secret. To link Google accounts you must supply your own OAuth client (create one in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials)) and set both environment variables before starting the proxy:
 >
 > ```powershell
 > $env:OAUTH_CLIENT_ID = "your-client-id.apps.googleusercontent.com"
-> $env:OAUTH_CLIENT_SECRET = "GOCSPX-your-secret"
+> $env:OAUTH_CLIENT_SECRET = "your-client-secret"
 > ```
 >
-> Or in your `config.json`:
-> ```json
-> {
->   "oauthClientId": "your-client-id.apps.googleusercontent.com",
->   "oauthClientSecret": "GOCSPX-your-secret"
-> }
-> ```
+> Never commit these values.
 
 - This project routes requests through Google's Cloud Code API using Google OAuth. Review Google's terms before use; access may be restricted at Google's discretion.
 
