@@ -1,0 +1,31 @@
+{
+  "name": "claude-code-gemini-bridge",
+  "version": "1.0.0",
+  "description": "Run Anthropic's Claude Code CLI powered by Google's latest Gemini 3.8 Flash models with zero rate limits, full multi-account load balancing, and automated 1-click Windows installer.",
+  "main": "src/proxy/index.js",
+  "bin": {
+    "claude-gemini": "./bin/claude-gemini.cmd"
+  },
+  "scripts": {
+    "start": "node src/proxy/index.js",
+    "setup": "powershell -ExecutionPolicy Bypass -File ./scripts/setup.ps1",
+    "accounts": "node src/proxy/cli/accounts.js",
+    "build:installer": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe /out:Installer.exe /target:exe /optimize+ installer\\Installer.cs"
+  },
+  "keywords": [
+    "claude-code",
+    "gemini",
+    "gemini-3.8-flash",
+    "antigravity",
+    "anthropic",
+    "ai",
+    "cli",
+    "proxy",
+    "google-cloud-code"
+  ],
+  "author": "Vansh Saini",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

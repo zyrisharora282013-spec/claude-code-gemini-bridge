@@ -1,0 +1,15 @@
+{
+  "model": "gemini-3.8-flash-high",
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:8085",
+    "ANTHROPIC_API_KEY": "dummy",
+    "ANTHROPIC_MODEL": "gemini-3.8-flash-high",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "gemini-3.8-flash-high",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "gemini-3.8-flash-high",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "gemini-3.8-flash-low",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "gemini-3.8-flash-high",
+    "ENABLE_EXPERIMENTAL_MCP_CLI": "true"
+  },
+  "autoUpdatesChannel": "latest",
+  "theme": "dark"
+}

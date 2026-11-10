@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+logs/
+server.log
+
+# Environment and sensitive data
+.env
+.env.local
+accounts.json
+*.pid
+server.pid
+*.tmp
+
+# System and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+.claude/settings.local.json
+
+# Build artifacts
+Installer.exe
+Installer.exe.sha256
+*.pdb
+*.obj
+*.zip
+dist/
+release/
