@@ -34,7 +34,7 @@ header.site-nav { background: rgba(13, 11, 24, .55) !important; border-color: rg
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 .big-num { font-size: clamp(4rem, 14vw, 9rem); line-height: .9; font-weight: 900; background: linear-gradient(180deg, #fff, rgba(255, 255, 255, .05)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero-title { font-size: clamp(2.8rem, 10vw, 6.5rem); line-height: .95; font-weight: 900; letter-spacing: -.04em; text-shadow: 0 4px 40px rgba(7, 6, 13, .9), 0 0 12px rgba(7, 6, 13, .7); }
+.hero-title { font-size: clamp(2.8rem, 10vw, 6.5rem); line-height: .95; font-weight: 900; letter-spacing: -.04em; filter: drop-shadow(0 4px 24px rgba(7, 6, 13, .85)); }
 .float-y { animation: floaty 5s ease-in-out infinite; }
 .scroll-cue { animation: floaty 2s ease-in-out infinite; }
 @keyframes floaty { 50% { transform: translateY(-10px); } }
