@@ -9,6 +9,7 @@
   <!--include:nav-->
   <main class="container-page prose-page py-14">
     <h1 class="mb-2 text-4xl font-extrabold">Download</h1>
+    <p id="download-count" class="text-sm text-cyan-300"></p>
     <p class="text-slate-400">Downloads are hosted on GitHub Releases, not on this site.</p>
 
     <div class="card my-8 flex flex-col items-start gap-4">
@@ -16,7 +17,7 @@
         <h3 class="!mt-0">Windows installer</h3>
         <p class="!mb-0 text-sm text-slate-400">Installer.exe plus a SHA-256 checksum file, built by CI from the public source.</p>
       </div>
-      <a class="btn btn-primary !no-underline !text-white" href="https://github.com/VanshCoder01/claude-code-gemini-bridge/releases" rel="noopener">Open GitHub Releases</a>
+      <a data-track="installer" class="btn btn-primary !no-underline !text-white" href="https://github.com/zyrisharora282013-spec/claude-code-gemini-bridge/releases" rel="noopener">Open GitHub Releases</a>
     </div>
 
     <h2>Verify your download</h2>
@@ -24,7 +25,7 @@
     <p>Compare the hash with the one published next to the release. If they differ, do not run the file.</p>
 
     <h2>Or run from source</h2>
-    <p>Clone the <a href="https://github.com/VanshCoder01/claude-code-gemini-bridge" rel="noopener">repository</a> and follow the <a href="/install.html">install guide</a>.</p>
+    <p>Clone the <a data-track="source" href="https://github.com/zyrisharora282013-spec/claude-code-gemini-bridge" rel="noopener">repository</a> and follow the <a href="/install.html">install guide</a>.</p>
   </main>
   <!--include:footer-->
 </body>

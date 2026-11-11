@@ -101,3 +101,33 @@ if (canvas) {
     });
   }
 }
+
+// Supabase: email signup, download counter, download click tracking
+import { signUp, logEvent, getDownloadCount } from './supabase.js';
+
+const form = document.getElementById('signup-form');
+if (form) {
+  const status = document.getElementById('signup-status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    const r = await signUp(new FormData(form).get('email') || '');
+    status.textContent = r.message;
+    status.className = 'mt-2 text-sm ' + (r.ok ? 'text-cyan-300' : 'text-red-400');
+    if (r.ok) form.reset();
+    btn.disabled = false;
+  });
+}
+
+document.querySelectorAll('[data-track]').forEach((a) =>
+  a.addEventListener('click', () => logEvent(a.dataset.track))
+);
+
+const counter = document.getElementById('download-count');
+if (counter) {
+  getDownloadCount().then((n) => {
+    if (n !== null) { counter.textContent = Number(n).toLocaleString() + ' downloads so far'; }
+  });
+}
+if (document.getElementById('hero-canvas')) logEvent('page_view');
