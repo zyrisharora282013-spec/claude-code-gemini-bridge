@@ -10,8 +10,10 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
-  build:
-    runs-on: windows-latest
+  # Proxy checks run on Linux: better-sqlite3 ships prebuilt binaries there, whereas the
+  # Windows runner has no prebuilt binary for its Node version and fails to compile it.
+  test:
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -26,7 +28,6 @@ jobs:
       run: npm install --no-fund
 
     - name: Syntax check all JavaScript
-      shell: bash
       run: |
         find src/proxy -name '*.js' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 node --check
 
@@ -41,6 +42,13 @@ jobs:
     - name: Dependency audit (production, high+)
       working-directory: src/proxy
       run: npm audit --omit=dev --audit-level=high
+
+  # The installer is a Windows .exe, so it is compiled on Windows (no npm install needed).
+  installer:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
 
     - name: Build Standalone Installer (CSC)
       run: |
