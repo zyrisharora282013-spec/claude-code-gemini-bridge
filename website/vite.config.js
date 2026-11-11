@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 const root = dirname(fileURLToPath(import.meta.url));
 const pages = ['index', 'install', 'security', 'faq', 'changelog', 'download'];
 // Set SITE_URL at build time (e.g. in the Vercel project settings) to your real domain.
+// BASE_PATH is '/' on Vercel/custom domains and '/<repo>/' on GitHub Pages.
+const BASE = (process.env.BASE_PATH || '/').replace(/\/?$/, '/');
 const SITE_URL = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
 
 // Replaces <!--include:name--> with partials/name.html and fills %SITE_URL% / %PAGE_URL% at build time.
@@ -23,6 +25,7 @@ function htmlIncludes() {
           .replace(/<!--include:([\w-]+)-->/g, (_, name) =>
             readFileSync(resolve(root, 'partials', `${name}.html`), 'utf8')
           )
+          .replace(/(href|src)="\/(?!\/|src\/)/g, '$1="' + BASE)
           .replaceAll('%SITE_URL%', SITE_URL)
           .replaceAll('%PAGE_URL%', SITE_URL + path);
       },
@@ -51,6 +54,7 @@ function seoFiles() {
 }
 
 export default defineConfig({
+  base: BASE,
   plugins: [htmlIncludes(), seoFiles()],
   build: {
     rollupOptions: {

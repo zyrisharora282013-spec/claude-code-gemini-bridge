@@ -1,0 +1,44 @@
+name: Deploy website to GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths: ['website/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build
+        working-directory: website
+        env:
+          BASE_PATH: /claude-code-gemini-bridge/
+          SITE_URL: https://zyrisharora282013-spec.github.io/claude-code-gemini-bridge
+          # Public (publishable) values only
+          VITE_SUPABASE_URL: https://jmiyciphzowocqkzyvzr.supabase.co
+          VITE_SUPABASE_ANON_KEY: sb_publishable_6ywwhjouX9Tclzj3Pnb3wg_hjGsTeji
+        run: |
+          npm ci || npm install
+          npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
