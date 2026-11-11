@@ -84,7 +84,7 @@
                     <span class="text-[10px] text-gray-500 font-mono tracking-wider"
                         x-text="$store.global.t('systemDesc')">CLAUDE PROXY SYSTEM</span>
                     <span class="text-[10px] text-gray-500 font-mono tracking-wider"
-                        x-text="'v' + $store.global.version">v1.0.0</span>
+                        x-text="$store.global.version ? 'v' + $store.global.version : ''"></span>
                 </div>
             </div>
         </div>

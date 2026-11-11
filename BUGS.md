@@ -6,6 +6,8 @@ source-code audit of the Antigravity Console web UI.
 Priority key: **P0** = security / data-loss, **P1** = broken functionality,
 **P2** = incorrect display, **P3** = cosmetic / DX.
 
+> **Status (Nov 2026):** most items below were already fixed in the code. Fixed in the latest pass: #12 (Redact fallback), #14 (version label no longer flashes "1.0.0"), #22 (safe translation fallback). Items #13 (slider formulas) and #20 (mobile backdrop) were re-checked and are correct as-is. Remaining items are cosmetic.
+
 ---
 
 ## P0 — Security

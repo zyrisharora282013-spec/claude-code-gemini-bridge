@@ -19,6 +19,45 @@
 
 ---
 
+## 🧒 How It Works (Simple Version)
+
+Think of it like a **translator sitting between two people who speak different languages**:
+
+1. **Claude Code** (the coding assistant in your terminal) only knows how to talk to Anthropic.
+2. **Gemini** (Google's AI) speaks a different "language".
+3. This project runs a small program on **your own computer** (the *proxy*, at `localhost:8085`). It catches what Claude Code says, translates it for Gemini, and translates the answer back.
+4. You sign in with your Google account once. Nothing leaves your PC except the requests to Google.
+
+**Using it in 3 steps**
+1. **Install:** run `Installer.exe` from [Releases](../../releases), or `npm run setup`.
+2. **Link Google:** open http://localhost:8085, click **Add Account** -> **Connect Google Account**.
+3. **Use it:** open a terminal in any project and type `claude-gemini`.
+
+If something looks stuck, see [Troubleshooting](#-troubleshooting).
+
+---
+
+## 🌐 The Website (`website/`) and Supabase
+
+The `website/` folder is the project's public site (Vite + Tailwind). It uses **Supabase** for:
+- **Email signup:** the footer form saves to the `email_signups` table.
+- **Download counter:** clicks on download links are saved to `download_events`; the Download page shows the total.
+
+Security: the public key can only **insert** rows. It cannot read anything (Row Level Security), and the total is exposed only through the `get_download_count()` function.
+
+**Run it yourself**
+```bash
+# 1. In Supabase > SQL Editor, run supabase/website.sql once
+# 2. Then:
+cd website
+cp .env.example .env.local     # contains your project URL + publishable key
+npm install
+npm run dev                    # opens http://localhost:5173
+```
+For production (Vercel), add `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` and `SITE_URL` in the project's environment variables.
+
+---
+
 ## 🏗️ Architecture
 
 ```mermaid
@@ -134,6 +173,9 @@ claude-code-gemini-bridge/
 │   └── Launch-Claude-Gemini.bat # Desktop batch launcher
 ├── src/
 │   └── proxy/                   # Node.js API proxy & Anthropic adapter
+├── website/                     # Public site (Vite + Tailwind) with Supabase signup/counter
+├── supabase/
+│   └── website.sql              # Database schema for the website
 ├── scripts/
 │   ├── setup.ps1                # PowerShell installer
 │   ├── start-proxy.cmd          # Background service starter
